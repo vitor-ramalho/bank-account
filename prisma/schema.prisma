@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://citizix_user:S3cret@localhost:5432/bank"
+}
+
+model Account {
+  id         Int        @id @default(autoincrement())
+  number     Int        @unique
+  ag         String
+  type       AccountType @default(CORRENTE)
+  balance    Float
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+}
+
+enum AccountType {
+  POUPANCA
+  CORRENTE
+}
